@@ -44,7 +44,7 @@ else if ($p == 'insertRunlist')
 	//Grab the inputs
 	if (isset($_POST['sampID'])){$sampID = $_POST['sampID'];}
 	if (isset($_POST['runID'])){$runID = $_POST['runID'];}
-	
+
 	$searchQuery = "INSERT INTO ngs_runlist
 		(run_id, sample_id, owner_id, group_id, perms, date_created, date_modified, last_modified_user)
 		VALUES ";

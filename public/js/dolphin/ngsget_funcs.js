@@ -7,15 +7,15 @@
 function rerunSelected(runID, groupID){
 	var sample_ids = [];
 	$.ajax({ type: "GET",
-		 url: "/dolphin/public/ajax/ngsquerydb.php",
-		 data: { p: "getRunSamples", runID: runID },
-		 async: false,
-		 success : function(s)
-		 {
+		url: "/dolphin/public/ajax/ngsquerydb.php",
+		data: { p: "getRunSamples", runID: runID },
+		async: false,
+		success : function(s)
+		{
 			for(var i = 0; i < s.length; i++) {
 			sample_ids.push(s[i].sample_id);
 			}
-		 }
+		}
 	});
 	window.location.href = "/dolphin/pipeline/rerun/" + runID + "/" + sample_ids + "$";
 }
@@ -23,15 +23,15 @@ function rerunSelected(runID, groupID){
 function reportSelected(runID, groupID){
 	var ids = [];
 	$.ajax({ type: "GET",
-		 url: "/dolphin/public/ajax/ngsquerydb.php",
-		 data: { p: "getRunSamples", runID: runID },
-		 async: false,
-		 success : function(s)
-		 {
+		url: "/dolphin/public/ajax/ngsquerydb.php",
+		data: { p: "getRunSamples", runID: runID },
+		async: false,
+		success : function(s)
+		{
 			for(var i = 0; i < s.length; i++) {
 			ids.push(s[i].sample_id);
 			}
-		 }
+		}
 	});
 	window.location.href = "/dolphin/pipeline/report/" + runID + '/' + ids + "$";
 }
@@ -39,15 +39,15 @@ function reportSelected(runID, groupID){
 function getSampleIDs(search){
 	var ids= [];
 	$.ajax({ type: "GET",
-		 url: "/dolphin/public/ajax/ngsquerydb.php",
-		 data: { p: "getSelectedSamples", search: search },
-		 async: false,
-		 success : function(s)
-		 {
+		url: "/dolphin/public/ajax/ngsquerydb.php",
+		data: { p: "getSelectedSamples", search: search },
+		async: false,
+		success : function(s)
+		{
 			for(var i = 0; i < s.length; i++) {
 			ids.push(s[i].id);
 			}
-		 }
+		}
 	});
 	return ids;
 }
@@ -55,17 +55,17 @@ function getSampleIDs(search){
 function grabReload(groupID){
 	jsonArray = [];
 	$.ajax({ type: "GET",
-		 url: "/dolphin/public/ajax/ngsquerydb.php",
-		 data: { p: "grabReload", groupID: groupID },
-		 async: false,
-		 success : function(s)
-		 {
+		url: "/dolphin/public/ajax/ngsquerydb.php",
+		data: { p: "grabReload", groupID: groupID },
+		async: false,
+		success : function(s)
+		{
 					var jsonObj = JSON.parse(s[0].json_parameters);
 			jsonArray.push(jsonObj);
 			jsonArray.push(s[0].outdir);
 			jsonArray.push(s[0].run_name);
 			jsonArray.push(s[0].run_description);
-		 }
+		}
 	});
 	return jsonArray
 }
@@ -184,19 +184,19 @@ function getSingleSample(sampleID){
 }
 
 function findIfMatePaired(runID){
-    var checkMP = false;
-    $.ajax({ type: "GET",
+	var checkMP = false;
+	$.ajax({ type: "GET",
 		url: "/dolphin/public/ajax/ngsquerydb.php",
 		data: { p: "checkMatePaired", runid: runID },
 		async: false,
 		success : function(s)
 		{
-            var jsonGrab = s.map(JSON.stringify);
-            newJsonArray = jsonGrab[0].split('\\"');
+			var jsonGrab = s.map(JSON.stringify);
+			newJsonArray = jsonGrab[0].split('\\"');
 			if (newJsonArray[7] == 'paired') {
-                checkMP = true;
-            }
+				checkMP = true;
+			}
 		}
 	});
-    return checkMP;
+	return checkMP;
 }

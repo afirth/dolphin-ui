@@ -9,7 +9,7 @@ require_once("../../includes/dbfuncs.php");
 $query = new dbfuncs();
 
 $pDictionary = ['getSelectedSamples', 'submitPipeline', 'getStatus', 'getRunSamples', 'grabReload', 'getReportNames', 'lanesToSamples',
-                'checkMatePaired', 'getAllSampleIds', 'getLaneIdFromSample', 'getSingleSample', 'getSeriesIdFromLane', 'getAllLaneIds'];
+				'checkMatePaired', 'getAllSampleIds', 'getLaneIdFromSample', 'getSingleSample', 'getSeriesIdFromLane', 'getAllLaneIds'];
 
 $q = "";
 $r = "";
@@ -411,7 +411,7 @@ else if($p == 'getSeriesIdFromLane')
 }
 else if ($p == 'checkMatePaired')
 {
-    if (isset($_GET['runid'])){$runid = $_GET['runid'];}
+	if (isset($_GET['runid'])){$runid = $_GET['runid'];}
 	$data=$query->queryTable("
 		SELECT json_parameters
 		FROM ngs_runparams
